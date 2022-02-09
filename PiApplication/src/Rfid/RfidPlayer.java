@@ -1,91 +1,111 @@
 package Rfid;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Scanner;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * This RfidListener implements an interface between the python write and java.
+ * This RfidWriter implements an interface between the python write file and java.
  * @author Sacredgamer
  */
 public class RfidPlayer {
+    //String pathh;
 
-    private long id;
-    private final StringBuilder content;
+    Logger log = Logger.getLogger(RfidPlayer.class.getName());
 
-    private Scanner scanner;
-    private boolean tryAgain;
-    private static final Logger log = Logger.getLogger(RfidPlayer.class.getName());
-    private int song1;
-
-    public RfidPlayer() {
-        content = new StringBuilder();
-        id = 0;
-        tryAgain = true;
-    }
     /**
-     * Start RFID reader and wait till tag is in range.
+     * Start RFID writer and wait till tag is in range.
      * 
-     * @throws IOException 
-     * If the Interface read file was not found or is not python.
+     * @param newText Text to write to the tag.
+     * @throws IOException If the Interface write file was not found or is not python.
      */
-    public synchronized void read() throws IOException {
-        log.info("Reading...");
+    public void write(String newText) throws IOException {
+        evalueateText(newText);
+        boolean tryAgain = true;
+        log.info("Put the tag to the Reader.");
         while (tryAgain) {
             Interface.clear();
-            tryAgain = false;
 
             Process p = Runtime.getRuntime().exec("python " + Interface.getPlayPath());
-            //scanner = new Scanner(new BufferedReader(new InputStreamReader(p.getInputStream())));
+            BufferedWriter processInput = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()));
+            new Thread(new writer(processInput, newText)).start();
 
-            //handleScanner();
-            
-            //scanner.close();
+            BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            tryAgain = errorEvaluation(new Scanner(in));
+
             p.destroy();
         }
-        log.info("Read!");
+        log.info("Written!");
+
     }
     
-    public long getId(){
-        return id;
-    }
-    
-    public String getContent(){
-        return content.toString();
+    public void play(String audioFileName) throws IOException {
+        //evalueateText(newText);
+       //pathh=this.pathh;
+        boolean tryAgain = true;
+        
+        log.info("ist hier durchgelaufen");
+        while (tryAgain) {
+            Interface.clear();
+
+            //Process p = Runtime.getRuntime().exec("python " + Interface.getPlayPath());
+            //Pfadangabe korrekt erstelle
+            Process p = Runtime.getRuntime().exec("python /home/pi/pi-rfid/"+audioFileName+".py");
+            System.out.println(p.getOutputStream().getClass());
+            BufferedWriter processInput = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()));
+            new Thread(new writer(processInput, "Testttt")).start();
+            //Thread a =new Thread(processInput,"wwww").start();
+            //a.destroy();
+            BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            tryAgain = errorEvaluation(new Scanner(in));
+            p.destroy();
+        }
+        log.info("Written!");
+
     }
 
-    private void handleScanner() {
-        while (scanner.hasNext() && !tryAgain) {
-            if (errorEvaluation()) {
-                abort();
-            } else {
-                readContent();
-            }
+    private void evalueateText(String newText) {
+        if (newText.length() > 48) {
+            log.warning("Only the first 48 Characters will be written to the Tag.");
         }
     }
 
-    private boolean errorEvaluation() {
-        if (scanner.hasNext(".*Error.*") || scanner.hasNext(".*AUTH.*")) {
-            log.warning("Error while reading try again...");
-            return true;
+    private boolean errorEvaluation(Scanner scanner) {
+        while (scanner.hasNext()) {
+            if (scanner.hasNext(".*Error.*") || scanner.hasNext(".*AUTH.*")) {
+                log.warning("Error while writing try again...");
+                return true;
+            }
+            scanner.next();
         }
         return false;
     }
 
-    private void abort() {
-        content.setLength(0);
-        id = 0;
-        tryAgain = true;
-    }
+     private class writer implements Runnable {
 
-    private void readContent() {
-        if (id == 0) {
-            id = Long.parseLong(scanner.next());
-        } else {
-            content.append(scanner.next());
+        private BufferedWriter processInput;
+        private String newText;
+
+        public writer(BufferedWriter processInput, String newText) {
+            this.processInput = processInput;
+            this.newText = newText;
         }
+
+        @Override
+        public void run() {
+            try {
+                processInput.write(newText + "\n");
+                processInput.flush();
+            } catch (IOException ex) {
+                Logger.getLogger(RfidPlayer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
     }
 
 }
