@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package piapplication;
 
 import Rfid.*;
@@ -27,55 +22,49 @@ public class PiApplication {
      */
     @SuppressWarnings({"LoggerStringConcat", "CallToPrintStackTrace"})
     public static void main(String[] args) {
-        
-        long idNum = 0;
+        String cardNum = "";
         boolean tryAgain = true;
-        boolean b = true;
-        while (b) {
 
-            //change this to your read- and write python files
-            Interface.init("/home/pi/pi-rfid/Read.py", "/home/pi/pi-rfid/Player.py");
+        //change this to your read- and write python files
+        Interface.init("/home/pi/pi-rfid/Read.py", "/home/pi/pi-rfid/Audio1.py");
 
-            log.info("Reader test:");
-            try {
-                RfidListener reader = new RfidListener();
-                RfidPlayer player = new RfidPlayer();
-                reader.read();
-                System.out.println(idNum);
-                log.info("Id: " + reader.getId());
-                idNum = reader.getId();
-                if (idNum == 770104560442L) {
-                    System.out.println("volltreffer");
-                    /** Name Audiodatei*/
-                    player.play("Audio1");
-                    //player.read();
-                    //while (tryAgain) {
-                    //    Interface.clear();
-                    //    tryAgain = false;
-                    //Process p = Runtime.getRuntime().exec("python /home/pi/pi-rfid/Player.py");
-                    //    Process p = Runtime.getRuntime().exec("python " + Interface.getPlayPath());
-                    //     p.destroy();
-                    //}
-                }else if (idNum == 192145653419L) {
-                    System.out.println("volltreffer");
-                    player.play("Audio2");
-                } else {
-                    System.out.println("Fehler");
+        log.info("Reader test:");
+        try {
+            RfidListener reader = new RfidListener();
+            RfidPlayer2 player = new RfidPlayer2();
+            reader.read();
 
-                }
 
-                    log.info("Content: " + reader.getContent());
-                }catch (IOException ioe) {
-                Logger.getLogger(PiApplication.class.getName()).log(Level.SEVERE, null, ioe);
-            }
-
-                //log.info("Writer test:");
-                //try {
-                //    new RfidWriter().write("this_is_a_test");
-                //} catch (IOException ex) {
-                //    Logger.getLogger(PiApplication.class.getName()).log(Level.SEVERE, null, ex);
+            log.info("Id: " + reader.getId());
+            cardNum = reader.getContent();
+            if ("1.1".equals(cardNum) || "1.2".equals(cardNum)) {
+                System.out.println("volltreffer");
+                player.play("Audio1");
+                //player.read();
+                //while (tryAgain) {
+                //    Interface.clear();
+                //    tryAgain = false;
+                //Process p = Runtime.getRuntime().exec("python /home/pi/pi-rfid/Player.py");
+                //    Process p = Runtime.getRuntime().exec("python " + Interface.getPlayPath());
+                //     p.destroy();
                 //}
+                
+            } else {
+                System.out.println("Fehler");
+                
             }
+            
+            log.info("Content: " + reader.getContent());
+        } catch (IOException ioe) {
+            Logger.getLogger(PiApplication.class.getName()).log(Level.SEVERE, null, ioe);
         }
 
+        //log.info("Writer test:");
+        //try {
+        //    new RfidWriter().write("this_is_a_test");
+        //} catch (IOException ex) {
+        //    Logger.getLogger(PiApplication.class.getName()).log(Level.SEVERE, null, ex);
+        //}
     }
+
+}
