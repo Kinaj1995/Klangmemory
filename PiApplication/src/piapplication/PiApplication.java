@@ -24,6 +24,8 @@ public class PiApplication {
     public static void main(String[] args) {
         String cardNum = "";
         boolean tryAgain = true;
+        boolean b = true;
+        while (b){
 
         //change this to your read- and write python files
         Interface.init("/home/pi/pi-rfid/Read.py", "/home/pi/pi-rfid/Audio1.py");
@@ -31,7 +33,7 @@ public class PiApplication {
         log.info("Reader test:");
         try {
             RfidListener reader = new RfidListener();
-            RfidPlayer2 player = new RfidPlayer2();
+            RfidPlayer player = new RfidPlayer();
             reader.read();
 
 
@@ -66,5 +68,5 @@ public class PiApplication {
         //    Logger.getLogger(PiApplication.class.getName()).log(Level.SEVERE, null, ex);
         //}
     }
-
+    }
 }
