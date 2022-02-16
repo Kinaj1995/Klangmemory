@@ -1,16 +1,17 @@
 package Rfid;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.io.*;
+import sun.audio.*;
 
 /**
- * This RfidWriter implements an interface between the python write file and java.
+ * This RfidWriter implements an interface between the python write file and
+ * java.
+ *
  * @author Sacredgamer
  */
 public class RfidPlayer {
@@ -20,10 +21,13 @@ public class RfidPlayer {
 
     /**
      * Start RFID writer and wait till tag is in range.
-     * 
+     *
      * @param newText Text to write to the tag.
-     * @throws IOException If the Interface write file was not found or is not python.
+     * @throws IOException If the Interface write file was not found or is not
+     * python.
      */
+    
+    /*
     public void write(String newText) throws IOException {
         evalueateText(newText);
         boolean tryAgain = true;
@@ -41,15 +45,16 @@ public class RfidPlayer {
             p.destroy();
         }
         log.info("Written!");
-
     }
-    
+    */
+
+    /*   
     public void play(String audioFileName) throws IOException {
         //evalueateText(newText);
        //pathh=this.pathh;
         boolean tryAgain = true;
         
-        log.info("ist hier durchgelaufen");
+        //log.info("ist hier durchgelaufen");
         while (tryAgain) {
             Interface.clear();
 
@@ -65,9 +70,34 @@ public class RfidPlayer {
             p.destroy();
         }
         log.info("Written!");
-
     }
+     
 
+    public void play(String audioFileName) {
+        try {
+            Clip clip = AudioSystem.getClip();
+            AudioInputStream inputStream = AudioSystem.getAudioInputStream(
+                    RfidPlayer.class.getResourceAsStream("/home/pi/pi-rfid/Sounds/Animals/" + audioFileName));
+            clip.open(inputStream);                     
+            clip.start();
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+*/
+    
+  public void play(String audioFileName) throws Exception  {
+    // open the sound file as a Java input stream
+    InputStream in = new FileInputStream("/home/pi/pi-rfid/Sounds/Animals/" + audioFileName);
+
+    // create an audiostream from the inputstream
+    AudioStream audioStream = new AudioStream(in);
+
+    // play the audio clip with the audioplayer class
+    AudioPlayer.player.start(audioStream);
+    AudioPlayer.player.join(5000);
+  }
+    
     private void evalueateText(String newText) {
         if (newText.length() > 48) {
             log.warning("Only the first 48 Characters will be written to the Tag.");
@@ -85,7 +115,7 @@ public class RfidPlayer {
         return false;
     }
 
-     private class writer implements Runnable {
+    private class writer implements Runnable {
 
         private BufferedWriter processInput;
         private String newText;
