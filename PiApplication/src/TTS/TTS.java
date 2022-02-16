@@ -1,13 +1,15 @@
+/*
 package TTS;
 
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
-
+*/
 /**
  *
  * @author janik
  */
 
+/*
 public class TTS
 {
     public  void dospeak(String textToSpeech) {
@@ -30,3 +32,4 @@ Voice voice;//Creating object of Voice class
  
 }
 }
+*/
