@@ -22,6 +22,6 @@ public class Category {
         reader_category.read();
         category = reader_category.getContent();
 
-        Interface.init(category, "/home/pi/pi-rfid/Sounds/" + category + "/");
+        Interface.init(Interface.getReadPath(), "/home/pi/pi-rfid/Sounds/" + category + "/");
     }
 }
