@@ -88,7 +88,7 @@ public class RfidPlayer {
     
   public void play(String audioFileName) throws Exception  {
     // open the sound file as a Java input stream
-    InputStream in = new FileInputStream("/home/pi/pi-rfid/Sounds/Animals/" + audioFileName);
+    InputStream in = new FileInputStream(Interface.getPlayPath() + audioFileName);
 
     // create an audiostream from the inputstream
     AudioStream audioStream = new AudioStream(in);

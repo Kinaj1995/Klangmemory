@@ -30,11 +30,14 @@ public class PiApplication {
         while (b) {
 
             //change this to your read- and write python files
-            Interface.init("/home/pi/pi-rfid/Read.py", "/home/pi/pi-rfid/Audio1.py");
+            Interface.init("/home/pi/pi-rfid/Read.py", "/home/pi/pi-rfid/Sounds/Animals/");
 
-            //log.info("Cardmatching:");
-            CardMatcher cardmatching = new CardMatcher();
+            //log.info("Switch Category:");
+            Category switchCategory = new Category();            
+            switchCategory.switchCategory();
             
+            //log.info("Cardmatching:");
+            CardMatcher cardmatching = new CardMatcher();            
             cardmatching.cardmatching();
 
         }

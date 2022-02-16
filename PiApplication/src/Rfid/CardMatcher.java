@@ -41,13 +41,13 @@ public class CardMatcher {
                 if (("1.1".equals(cardNum2) && !cardNum2.equals(cardNum1)) || ("1.2".equals(cardNum2) && !cardNum2.equals(cardNum1))) {
                     System.out.println("2.Karte erfasst (cardNum= " + cardNum2 + ")");
                     player2.play("Audio1.wav");
-                    System.out.printf("**********************************************%nSuper gemacht! Du hast beide Katzen gefunden!%n**********************************************");
+                    player3.play("KorrekteKarte.wav");
                     //tts.dospeak("Super gemacht! Du hast beide Katzen gefunden");
 
                 } else {
-                    System.out.println("Fehler");
                     cardNum1 = "";
-                    
+                    System.out.println("FalscheKarte");
+                    player3.play("FalscheKarte.wav");
                 }
             }
 
@@ -60,11 +60,13 @@ public class CardMatcher {
                 if (("2.1".equals(cardNum2) && !cardNum2.equals(cardNum1)) || ("2.2".equals(cardNum2) && !cardNum2.equals(cardNum1))) {
                     System.out.println("2.Karte erfasst (cardNum= " + cardNum2 + ")");
                     player2.play("Audio2.wav");
-                    System.out.printf("**********************************************%nSuper gemacht! Du hast beide Katzen gefunden!%n**********************************************");
+                    player3.play("KorrekteKarte.wav");
                     //tts.dospeak("Super gemacht! Du hast beide Katzen gefunden");
 
                 } else {
-                    System.out.println("Fehler");
+                    cardNum1 = "";
+                    System.out.println("FalscheKarte");
+                    player3.play("FalscheKarte.wav");
                 }
             }
 
@@ -77,11 +79,13 @@ public class CardMatcher {
                 if (("3.1".equals(cardNum2) && !cardNum2.equals(cardNum1)) || ("3.2".equals(cardNum2) && !cardNum2.equals(cardNum1))) {
                     System.out.println("2.Karte erfasst (cardNum= " + cardNum2 + ")");
                     player2.play("Audio3.wav");
-                    System.out.printf("**********************************************%nSuper gemacht! Du hast beide Katzen gefunden!%n**********************************************");
+                    player3.play("KorrekteKarte.wav");
                     //tts.dospeak("Super gemacht! Du hast beide Katzen gefunden");
 
                 } else {
-                    System.out.println("Fehler");
+                    cardNum1 = "";
+                    System.out.println("FalscheKarte");
+                    player3.play("FalscheKarte.wav");
                 }
             }
 
@@ -94,11 +98,13 @@ public class CardMatcher {
                 if (("4.1".equals(cardNum2) && !cardNum2.equals(cardNum1)) || ("4.2".equals(cardNum2) && !cardNum2.equals(cardNum1))) {
                     System.out.println("2.Karte erfasst (cardNum= " + cardNum2 + ")");
                     player2.play("Audio4.wav");
-                    System.out.printf("**********************************************%nSuper gemacht! Du hast beide Katzen gefunden!%n**********************************************");
+                    player3.play("KorrekteKarte.wav");
                     //tts.dospeak("Super gemacht! Du hast beide Katzen gefunden");
 
                 } else {
-                    System.out.println("Fehler");
+                    cardNum1 = "";
+                    System.out.println("FalscheKarte");
+                    player3.play("FalscheKarte.wav");
                 }
             }
 
@@ -111,11 +117,13 @@ public class CardMatcher {
                 if (("5.1".equals(cardNum2) && !cardNum2.equals(cardNum1)) || ("5.2".equals(cardNum2) && !cardNum2.equals(cardNum1))) {
                     System.out.println("2.Karte erfasst (cardNum= " + cardNum2 + ")");
                     player2.play("Audio5.wav");
-                    System.out.printf("**********************************************%nSuper gemacht! Du hast beide Katzen gefunden!%n**********************************************");
+                    player3.play("KorrekteKarte.wav");
                     //tts.dospeak("Super gemacht! Du hast beide Katzen gefunden");
 
                 } else {
-                    System.out.println("Fehler");
+                    cardNum1 = "";
+                    System.out.println("FalscheKarte");
+                    player3.play("FalscheKarte.wav");
                 }
             }
 
@@ -128,11 +136,13 @@ public class CardMatcher {
                 if (("6.1".equals(cardNum2) && !cardNum2.equals(cardNum1)) || ("6.2".equals(cardNum2) && !cardNum2.equals(cardNum1))) {
                     System.out.println("2.Karte erfasst (cardNum= " + cardNum2 + ")");
                     player2.play("Audio6.wav");
-                    System.out.printf("**********************************************%nSuper gemacht! Du hast beide Katzen gefunden!%n**********************************************");
+                    player3.play("KorrekteKarte.wav");
                     //tts.dospeak("Super gemacht! Du hast beide Katzen gefunden");
 
                 } else {
-                    System.out.println("Fehler");
+                    cardNum1 = "";
+                    System.out.println("FalscheKarte");
+                    player3.play("FalscheKarte.wav");
                 }
             }
 
@@ -145,11 +155,13 @@ public class CardMatcher {
                 if (("7.1".equals(cardNum2) && !cardNum2.equals(cardNum1)) || ("7.2".equals(cardNum2) && !cardNum2.equals(cardNum1))) {
                     System.out.println("2.Karte erfasst (cardNum= " + cardNum2 + ")");
                     player2.play("Audio7.wav");
-                    System.out.printf("**********************************************%nSuper gemacht! Du hast beide Katzen gefunden!%n**********************************************");
+                    player3.play("KorrekteKarte.wav");
                     //tts.dospeak("Super gemacht! Du hast beide Katzen gefunden");
 
                 } else {
-                    System.out.println("Fehler");
+                    cardNum1 = "";
+                    System.out.println("FalscheKarte");
+                    player3.play("FalscheKarte.wav");
                 }
             }
 
@@ -162,11 +174,13 @@ public class CardMatcher {
                 if (("8.1".equals(cardNum2) && !cardNum2.equals(cardNum1)) || ("8.2".equals(cardNum2) && !cardNum2.equals(cardNum1))) {
                     System.out.println("2.Karte erfasst (cardNum= " + cardNum2 + ")");
                     player2.play("Audio8.wav");
-                    System.out.printf("**********************************************%nSuper gemacht! Du hast beide Katzen gefunden!%n**********************************************");
+                    player3.play("KorrekteKarte.wav");
                     //tts.dospeak("Super gemacht! Du hast beide Katzen gefunden");
 
                 } else {
-                    System.out.println("Fehler");
+                    cardNum1 = "";
+                    System.out.println("FalscheKarte");
+                    player3.play("FalscheKarte.wav");
                 }
             }
 
@@ -179,11 +193,13 @@ public class CardMatcher {
                 if (("9.1".equals(cardNum2) && !cardNum2.equals(cardNum1)) || ("9.2".equals(cardNum2) && !cardNum2.equals(cardNum1))) {
                     System.out.println("2.Karte erfasst (cardNum= " + cardNum2 + ")");
                     player2.play("Audio9.wav");
-                    System.out.printf("**********************************************%nSuper gemacht! Du hast beide Katzen gefunden!%n**********************************************");
+                    player3.play("KorrekteKarte.wav");
                     //tts.dospeak("Super gemacht! Du hast beide Katzen gefunden");
 
                 } else {
-                    System.out.println("Fehler");
+                    cardNum1 = "";
+                    System.out.println("FalscheKarte");
+                    player3.play("FalscheKarte.wav");
                 }
             }
 
@@ -196,11 +212,13 @@ public class CardMatcher {
                 if (("10.1".equals(cardNum2) && !cardNum2.equals(cardNum1)) || ("10.2".equals(cardNum2) && !cardNum2.equals(cardNum1))) {
                     System.out.println("2.Karte erfasst (cardNum= " + cardNum2 + ")");
                     player2.play("Audio10.wav");
-                    System.out.printf("**********************************************%nSuper gemacht! Du hast beide Katzen gefunden!%n**********************************************");
+                    player3.play("KorrekteKarte.wav");
                     //tts.dospeak("Super gemacht! Du hast beide Katzen gefunden");
 
                 } else {
-                    System.out.println("Fehler");
+                    cardNum1 = "";
+                    System.out.println("FalscheKarte");
+                    player3.play("FalscheKarte.wav");
                 }
             } else {
                 System.out.println("Fehler");

@@ -21,7 +21,7 @@ public class Interface {
      * Initialize Interface
      *
      * @param readPath path of the python read file
-     * @param writePath path of the python write file
+     * @param playPath
      */
     public static void init(String readPath, String playPath) {
         procPaths = new String[]{readPath, playPath};
