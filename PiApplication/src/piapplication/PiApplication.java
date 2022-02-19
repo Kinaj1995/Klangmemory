@@ -25,19 +25,19 @@ public class PiApplication {
     @SuppressWarnings({"LoggerStringConcat", "CallToPrintStackTrace"})
     public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, Exception {
 
+        //change this to your read- and write python files
+        Interface.init("/home/pi/pi-rfid/Read.py", "/home/pi/pi-rfid/Sounds/Kat.1/");
+
         boolean tryAgain = true;
         boolean b = true;
         while (b) {
 
-            //change this to your read- and write python files
-            Interface.init("/home/pi/pi-rfid/Read.py", "/home/pi/pi-rfid/Sounds/Animals/");
-
             //log.info("Switch Category:");
-            Category switchCategory = new Category();            
+            Category switchCategory = new Category();
             switchCategory.switchCategory();
-            
+
             //log.info("Cardmatching:");
-            CardMatcher cardmatching = new CardMatcher();            
+            CardMatcher cardmatching = new CardMatcher();
             cardmatching.cardmatching();
 
         }

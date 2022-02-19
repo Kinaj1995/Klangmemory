@@ -14,7 +14,7 @@ import java.io.IOException;
 public class Category {
 
     public void switchCategory() throws IOException, Exception {
-        
+
         String category = "";
 
         RfidListener reader_category = new RfidListener();
@@ -22,6 +22,10 @@ public class Category {
         reader_category.read();
         category = reader_category.getContent();
 
-        Interface.init(Interface.getReadPath(), "/home/pi/pi-rfid/Sounds/" + category + "/");
+        if ("Kat.1".equals(category) || "Kat.2".equals(category) || "Kat.3".equals(category)) {
+            System.out.println("Kategorie erfasst (category= " + category + ")");
+            Interface.init(Interface.getReadPath(), "/home/pi/pi-rfid/Sounds/" + category + "/");
+        } else {
+        }
     }
 }
