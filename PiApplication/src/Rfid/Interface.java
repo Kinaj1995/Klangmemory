@@ -26,8 +26,8 @@ public class Interface {
     public static void init(String readPath, String playPath) {
         procPaths = new String[]{readPath, playPath};
     }
-     //   public static void init(String readPath) {
-     //   procPaths = new String[]{readPath};
+    //   public static void init(String readPath) {
+    //   procPaths = new String[]{readPath};
     //}
 
     /**

@@ -26,7 +26,6 @@ public class RfidPlayer {
      * @throws IOException If the Interface write file was not found or is not
      * python.
      */
-    
     /*
     public void write(String newText) throws IOException {
         evalueateText(newText);
@@ -46,9 +45,9 @@ public class RfidPlayer {
         }
         log.info("Written!");
     }
-    */
+     */
 
-    /*   
+ /*   
     public void play(String audioFileName) throws IOException {
         //evalueateText(newText);
        //pathh=this.pathh;
@@ -84,20 +83,20 @@ public class RfidPlayer {
             System.err.println(e.getMessage());
         }
     }
-*/
-    
-  public void play(String audioFileName) throws Exception  {
-    // open the sound file as a Java input stream
-    InputStream in = new FileInputStream(Interface.getPlayPath() + audioFileName);
+     */
+    public void play(String audioFileName) throws Exception {
+        // open the sound file as a Java input stream
+        InputStream in = new FileInputStream(Interface.getPlayPath() + audioFileName);
 
-    // create an audiostream from the inputstream
-    AudioStream audioStream = new AudioStream(in);
+        // create an audiostream from the inputstream
+        AudioStream audioStream = new AudioStream(in);
 
-    // play the audio clip with the audioplayer class
-    AudioPlayer.player.start(audioStream);
-    AudioPlayer.player.join(5000);
-  }
-    
+        // play the audio clip with the audioplayer class
+        AudioPlayer.player.start(audioStream);
+        Thread.sleep(5000);
+        AudioPlayer.player.stop(audioStream);
+    }
+
     private void evalueateText(String newText) {
         if (newText.length() > 48) {
             log.warning("Only the first 48 Characters will be written to the Tag.");

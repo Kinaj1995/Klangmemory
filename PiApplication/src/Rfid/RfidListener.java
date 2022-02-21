@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 /**
  * This RfidListener implements an interface between the python write and java.
+ *
  * @author Sacredgamer
  */
 public class RfidListener {
@@ -24,11 +25,12 @@ public class RfidListener {
         id = 0;
         tryAgain = true;
     }
+
     /**
      * Start RFID reader and wait till tag is in range.
-     * 
-     * @throws IOException 
-     * If the Interface read file was not found or is not python.
+     *
+     * @throws IOException If the Interface read file was not found or is not
+     * python.
      */
     public synchronized void read() throws IOException {
         log.info("Reading...");
@@ -40,18 +42,17 @@ public class RfidListener {
             scanner = new Scanner(new BufferedReader(new InputStreamReader(p.getInputStream())));
 
             handleScanner();
-            
             scanner.close();
             p.destroy();
         }
         log.info("Read!");
     }
-    
-    public long getId(){
+
+    public long getId() {
         return id;
     }
-    
-    public String getContent(){
+
+    public String getContent() {
         return content.toString();
     }
 
@@ -86,5 +87,4 @@ public class RfidListener {
             content.append(scanner.next());
         }
     }
-
 }

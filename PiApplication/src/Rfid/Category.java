@@ -24,7 +24,11 @@ public class Category {
 
         if ("Kat.1".equals(category) || "Kat.2".equals(category) || "Kat.3".equals(category)) {
             System.out.println("Kategorie erfasst (category= " + category + ")");
+            //tts.dospeak("Du hast die Kategorie geändert.");
+
             Interface.init(Interface.getReadPath(), "/home/pi/pi-rfid/Sounds/" + category + "/");
+            Thread.sleep(3000);
+
         } else {
         }
     }
