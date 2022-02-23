@@ -8,6 +8,7 @@ package Rfid;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import marytts.modules.synthesis.Voice;
 import piapplication.PiApplication;
 
 /**
@@ -25,6 +26,8 @@ public class CardMatcher {
             RfidListener reader1 = new RfidListener();
             RfidListener reader2 = new RfidListener();
             RfidPlayer player = new RfidPlayer();
+            PlaySoundWAV player2 = new PlaySoundWAV();
+            PlayAudio test = new PlayAudio();
             //TTS tts = new TTS();
 
             reader1.read();
@@ -32,20 +35,32 @@ public class CardMatcher {
 
             if ("1.1".equals(cardNum1) || "1.2".equals(cardNum1)) {
                 System.out.println("1.Karte erfasst (cardNum= " + cardNum1 + ")");
-                player.play("Audio1.wav");
-
+                //player.play("Audio1.wav");
+                player2.playSound("Audio1.wav");
+                 //Thread.sleep(5500);
+                test.playAudio("Bravo, du hast die Katze gefunden",0,0.5f);
+                
+        /**        TextToSpeech tts = new TextToSpeech();
+        
+        Voice.getAvailableVoices().stream().forEach(System.out::println);
+        tts.setVoice("bits1-hsmm");
+        
+        tts.speak("Hallo, Hallo... nun auf Deutsch ich bin der grösste", 2.0f, false, true);
+        
+*/
                 reader2.read();
                 cardNum2 = reader2.getContent();
                 if (("1.1".equals(cardNum2) && !cardNum2.equals(cardNum1)) || ("1.2".equals(cardNum2) && !cardNum2.equals(cardNum1))) {
                     System.out.println("2.Karte erfasst (cardNum= " + cardNum2 + ")");
                     player.play("Audio1.wav");
-                    player.play("KorrekteKarte.wav");
+                    //player.play("KorrekteKarte.wav");
+                    test.playAudio("Bravo, du hast die Katze gefunden",0,0.5f);
                     //tts.dospeak("Super gemacht! Du hast beide Katzen gefunden");
 
                 } else {
                     cardNum1 = "";
                     System.out.println("FalscheKarte");
-                    player.play("FalscheKarte.wav");
+                    //player.play("FalscheKarte.wav");
                 }
             }
 

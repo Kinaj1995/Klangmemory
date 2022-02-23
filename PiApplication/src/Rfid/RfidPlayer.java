@@ -92,9 +92,9 @@ public class RfidPlayer {
         AudioStream audioStream = new AudioStream(in);
 
         // play the audio clip with the audioplayer class
-        AudioPlayer.player.start(audioStream);
-        Thread.sleep(5000);
-        AudioPlayer.player.stop(audioStream);
+        //AudioPlayer.player.start(audioStream);
+        //Thread.sleep(5000);
+        //AudioPlayer.player.stop(audioStream);
     }
 
     private void evalueateText(String newText) {
