@@ -37,7 +37,7 @@ public class PiApplication {
             switchCategory.switchCategory();
 
             //log.info("Cardmatching:");
-            CardMatcher cardmatching = new CardMatcher();
+            CardMatcher3 cardmatching = new CardMatcher3();
             cardmatching.cardmatching();
 
         }

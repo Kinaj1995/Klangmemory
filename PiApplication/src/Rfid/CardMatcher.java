@@ -37,21 +37,11 @@ public class CardMatcher {
                 System.out.println("1.Karte erfasst (cardNum= " + cardNum1 + ")");
                 //player.play("Audio1.wav");
                 player2.playSound("Audio1.wav");
-                Thread.sleep(5000);
+                //Thread.sleep(5000);
                 tts.playAudio("1. Karte erfasst", 0, 0.5f);
                 //Thread.sleep(5500);
                 //test.playAudio("Bravo, du hast die Katze gefunden",0,0.5f);
 
-                /**
-                 * TextToSpeech tts = new TextToSpeech();
-                 *
-                 * Voice.getAvailableVoices().stream().forEach(System.out::println);
-                 * tts.setVoice("bits1-hsmm");
-                 *
-                 * tts.speak("Hallo, Hallo... nun auf Deutsch ich bin der
-                 * grösste", 2.0f, false, true);
-                 *
-                 */
                 reader2.read();
                 cardNum2 = reader2.getContent();
                 if (("1.1".equals(cardNum2) && !cardNum2.equals(cardNum1)) || ("1.2".equals(cardNum2) && !cardNum2.equals(cardNum1))) {
@@ -88,6 +78,7 @@ public class CardMatcher {
                     System.out.println("2.Karte erfasst (cardNum= " + cardNum2 + ")");
                     player2.playSound("Audio2.wav");
                     //player.play("KorrekteKarte.wav");
+                    Thread.sleep(5000);
                     tts.playAudio("Bravo, du hast die Hunde gefunden", 0, 0.5f);
                     //tts.dospeak("Super gemacht! Du hast beide Katzen gefunden");
                     cardNum1="";
@@ -97,6 +88,7 @@ public class CardMatcher {
                     //cardNum1 = "";
                     System.out.println("FalscheKarte");
                     //player.play("FalscheKarte.wav");
+                    Thread.sleep(5000);
                     tts.playAudio("Sorry, das wahr wohl nichts", 0, 0.5f);
                     cardNum1="";
                     cardNum2="";
