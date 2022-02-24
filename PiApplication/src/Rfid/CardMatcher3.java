@@ -21,7 +21,7 @@ public class CardMatcher3 {
 
         String cardNum1 = "";
         String cardNum2 = "";
-        String cardNum = "";
+        //String cardNum = "";
         int a=0;
 
         try {
@@ -41,7 +41,7 @@ public class CardMatcher3 {
                 playAudioFile(cardNum1);
                 System.out.println("1. Karte eingelesen");
                 Thread.sleep(4000);
-                //playAudioFile(cardNum1);
+                //playAudioFile(cardNum1);               
 
                 do {
                     cardNum2="";
