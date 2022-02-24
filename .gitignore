@@ -1,6 +1,7 @@
 /PiApplication/nbproject/private/
 /PiApplication/build/
-/PiApplication/dist/
+/PiApplication/dist/PiApplication.jar
+/PiApplication/dist/README.TXT
 /TestTTS/nbproject/private/
 /TestTTS/build/
 /TestTTS/dist/
