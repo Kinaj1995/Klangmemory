@@ -21,6 +21,9 @@ public class PlaySoundWAV {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(Interface.getPlayPath() + audioFileName).getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
+            if(clip.isActive()){
+                clip.close();
+            }
             clip.start();
         } catch (Exception ex) {
             System.out.println("Error with playing sound.");
