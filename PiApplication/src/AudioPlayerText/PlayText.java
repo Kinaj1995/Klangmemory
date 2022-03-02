@@ -1,9 +1,11 @@
+package AudioPlayerText;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Rfid;
+
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -16,10 +18,11 @@ import marytts.exceptions.SynthesisException;
 /**
  *
  * @author a_bir
+ * Plays the text when a pair is found or not. 
  */
-public class PlayAudio {
+public class PlayText {
     
-public void playAudio(String content, Integer voiceType, Float speed) throws MaryConfigurationException, SynthesisException, InterruptedException {
+public void playText(String content, Integer voiceType, Float speed) throws MaryConfigurationException, SynthesisException, InterruptedException, Exception {
         MaryInterface maryTts = new LocalMaryInterface();
         Set<String> voices = maryTts.getAvailableVoices();
         ArrayList<String> voice=new ArrayList<>(voices);
@@ -37,12 +40,15 @@ public void playAudio(String content, Integer voiceType, Float speed) throws Mar
         AudioPlayer playerContent = new AudioPlayer(audioContent);
         playerContent.start();
         playerContent.join();
+        System.out.println("gestartet");
         maryTts.setAudioEffects("Rate(durScale:1.5)");
+        playerContent.cancel();
+        System.out.println("cancel durchlaufen");
     }
 
  //   public static void main(String[] args) throws InterruptedException, MaryConfigurationException, SynthesisException {
         //String content="Bravo, du hast die Katze gefunden";
-   //     PlayAudio test =new PlayAudio();
+   //     PlayText test =new PlayText();
    //     test.playAudio("Bravo",0,0.5f);
    // }
 

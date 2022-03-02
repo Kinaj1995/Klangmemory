@@ -5,6 +5,8 @@
  */
 package Rfid;
 
+import AudioPlayerSound.PlaySoundWAV;
+import AudioPlayerText.PlayText;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,9 +27,9 @@ public class CardMatcher {
         try {
             RfidListener reader1 = new RfidListener();
             RfidListener reader2 = new RfidListener();
-            RfidPlayer player = new RfidPlayer();
-            PlaySoundWAV player2 = new PlaySoundWAV();
-            PlayAudio tts = new PlayAudio();
+            //RfidPlayer player = new RfidPlayer();
+            //PlaySoundWAV player2 = new PlaySoundWAV();
+            PlayText tts = new PlayText();
             //TTS tts = new TTS();
 
             reader1.read();
@@ -36,9 +38,10 @@ public class CardMatcher {
             if ("1.1".equals(cardNum1) || "1.2".equals(cardNum1)) {
                 System.out.println("1.Karte erfasst (cardNum= " + cardNum1 + ")");
                 //player.play("Audio1.wav");
-                player2.playSound("Audio1.wav");
-                //Thread.sleep(5000);
-                tts.playAudio("1. Karte erfasst", 0, 0.5f);
+                //player2.playSound("Audio1.wav");
+                playAudioFile(cardNum1);
+                Thread.sleep(5000);
+                //tts.playText("1. Karte erfasst", 0, 0.5f);
                 //Thread.sleep(5500);
                 //test.playAudio("Bravo, du hast die Katze gefunden",0,0.5f);
 
@@ -48,9 +51,10 @@ public class CardMatcher {
                     System.out.println("2.Karte erfasst (cardNum= " + cardNum2 + ")");
                     //player.play("Audio1.wav");
                     //player.play("KorrekteKarte.wav");
-                    player2.playSound("Audio1.wav");
+                    //player2.playSound("Audio1.wav");
+                    playAudioFile(cardNum2);
                     Thread.sleep(5000);
-                    tts.playAudio("Bravo, du hast die Katzen gefunden", 0, 0.5f);
+                    tts.playText("Bravo, du hast die Katzen gefunden", 0, 0.5f);
                     //tts.dospeak("Super gemacht! Du hast beide Katzen gefunden");
                     cardNum1="";
                     cardNum2="";
@@ -58,8 +62,9 @@ public class CardMatcher {
                 } else {
                     //cardNum1 = "";
                     System.out.println("FalscheKarte");
+                    playAudioFile(cardNum2);
                     Thread.sleep(5000);
-                    tts.playAudio("Sorry, das wahr wohl nichts", 0, 0.5f);
+                    tts.playText("Sorry, das wahr wohl nichts", 0, 0.5f);
                     //player.play("FalscheKarte.wav");
                     cardNum1="";
                     cardNum2="";
@@ -69,17 +74,20 @@ public class CardMatcher {
             if ("2.1".equals(cardNum1) || "2.2".equals(cardNum1)) {
                 System.out.println("1.Karte erfasst (cardNum= " + cardNum1 + ")");
                 //player.play("Audio2.wav");
-                 player2.playSound("Audio2.wav");
-                 tts.playAudio("1. Karte erfasst", 0, 0.5f);
+                 //player2.playSound("Audio2.wav");
+                 playAudioFile(cardNum1);
+                 Thread.sleep(5000);
+                 //tts.playText("1. Karte erfasst", 0, 0.5f);
                  
                 reader2.read();
                 cardNum2 = reader2.getContent();
                 if (("2.1".equals(cardNum2) && !cardNum2.equals(cardNum1)) || ("2.2".equals(cardNum2) && !cardNum2.equals(cardNum1))) {
                     System.out.println("2.Karte erfasst (cardNum= " + cardNum2 + ")");
-                    player2.playSound("Audio2.wav");
+                    //player2.playSound("Audio2.wav");
                     //player.play("KorrekteKarte.wav");
+                    playAudioFile(cardNum2);
                     Thread.sleep(5000);
-                    tts.playAudio("Bravo, du hast die Hunde gefunden", 0, 0.5f);
+                    tts.playText("Bravo, du hast die Hunde gefunden", 0, 0.5f);
                     //tts.dospeak("Super gemacht! Du hast beide Katzen gefunden");
                     cardNum1="";
                     cardNum2="";
@@ -88,14 +96,15 @@ public class CardMatcher {
                     //cardNum1 = "";
                     System.out.println("FalscheKarte");
                     //player.play("FalscheKarte.wav");
+                    playAudioFile(cardNum2);
                     Thread.sleep(5000);
-                    tts.playAudio("Sorry, das wahr wohl nichts", 0, 0.5f);
+                    tts.playText("Sorry, das wahr wohl nichts", 0, 0.5f);
                     cardNum1="";
                     cardNum2="";
                 }
             }
 
-            if ("3.1".equals(cardNum1) || "3.2".equals(cardNum1)) {
+           /** if ("3.1".equals(cardNum1) || "3.2".equals(cardNum1)) {
                 System.out.println("1.Karte erfasst (cardNum= " + cardNum1 + ")");
                 player.play("Audio3.wav");
 
@@ -247,10 +256,32 @@ public class CardMatcher {
                 }
             } else {
                 System.out.println("Keine Audiokarte");
-            }
+            }*/
 
         } catch (IOException ioe) {
             Logger.getLogger(PiApplication.class.getName()).log(Level.SEVERE, null, ioe);
+        }
+    }
+    
+    public void playAudioFile(String cardNum) throws InterruptedException, Exception {
+        PlaySoundWAV player = new PlaySoundWAV();
+
+        switch (cardNum) {
+
+            case "1.1":
+            case "1.2":
+                System.out.println("1.Karte erfasst (cardNum= " + cardNum + ")");
+                player.playSound("Audio1.wav");
+                break;
+
+            case "2.1":
+            case "2.2":
+                System.out.println("1.Karte erfasst (cardNum= " + cardNum + ")");
+                player.playSound("Audio2.wav");
+                break;
+
+            default:
+                System.out.println("keine Audiodatei vorhanden");
         }
     }
 }
