@@ -1,5 +1,7 @@
-package Rfid;
 
+package AAA_Ungültig;
+
+import Rfid.Interface;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.Scanner;

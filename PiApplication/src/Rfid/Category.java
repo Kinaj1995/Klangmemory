@@ -5,6 +5,7 @@
  */
 package Rfid;
 
+import AudioName.AudioFileTranslater;
 import java.io.IOException;
 
 /**
@@ -13,7 +14,7 @@ import java.io.IOException;
  */
 public class Category {
 
-    public void switchCategory() throws IOException, Exception {
+    public void switchCategoryPath() throws IOException, Exception {
 
         String category = "";
 
@@ -28,6 +29,7 @@ public class Category {
             //tts.dospeak("Du hast die Kategorie geändert.");
 
             Interface.init(Interface.getReadPath(), "/home/pi/pi-rfid/Sounds/" + category + "/");
+            AudioFileTranslater.switchCategoryStrings(category);
             Thread.sleep(3000);
 
         } else {
