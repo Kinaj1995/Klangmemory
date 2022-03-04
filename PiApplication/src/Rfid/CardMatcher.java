@@ -27,7 +27,7 @@ public class CardMatcher {
         try {
             RfidListener reader1 = new RfidListener();
             RfidListener reader2 = new RfidListener();
-            PlaySoundWAV player = new PlaySoundWAV();
+            //PlaySoundWAV player = new PlaySoundWAV();
             PlayText tts = new PlayText();
 
             reader1.read();
@@ -35,15 +35,16 @@ public class CardMatcher {
 
             if ("1.1".equals(cardNum1) || "1.2".equals(cardNum1)) {
                 System.out.println("1.Karte erfasst (cardNum= " + cardNum1 + ")");
-                player.playSound("Audio1.wav");
-                Thread.sleep(5000);  
+                playAudioFile(cardNum1);
+                Thread.sleep(5000);
 
                 reader2.read();
                 cardNum2 = reader2.getContent();
+                playAudioFile(cardNum2);
+                Thread.sleep(5000);
+
                 if (("1.1".equals(cardNum2) && !cardNum2.equals(cardNum1)) || ("1.2".equals(cardNum2) && !cardNum2.equals(cardNum1))) {
                     System.out.println("2.Karte erfasst (cardNum= " + cardNum2 + ")");
-                    player.playSound("Audio1.wav");
-                    Thread.sleep(5000);
                     tts.playText("Bravo, du hast die Katzen gefunden", 0, 0.5f);
                     cardNum1 = "";
                     cardNum2 = "";
@@ -57,7 +58,7 @@ public class CardMatcher {
                     cardNum2 = "";
                 }
             }
-/*
+            
             if ("2.1".equals(cardNum1) || "2.2".equals(cardNum1)) {
                 System.out.println("1.Karte erfasst (cardNum= " + cardNum1 + ")");
                 //player.play("Audio2.wav");
@@ -90,7 +91,7 @@ public class CardMatcher {
                     cardNum2 = "";
                 }
             }
-*/
+
             /**
              * if ("3.1".equals(cardNum1) || "3.2".equals(cardNum1)) {
              * System.out.println("1.Karte erfasst (cardNum= " + cardNum1 +
@@ -211,15 +212,13 @@ public class CardMatcher {
              *
              * } else { cardNum1 = ""; System.out.println("FalscheKarte");
              * player.play("FalscheKarte.wav"); } } else {
-             * System.out.println("Keine Audiokarte");
-            }
+             * System.out.println("Keine Audiokarte"); }
              */
         } catch (IOException ioe) {
             Logger.getLogger(PiApplication.class.getName()).log(Level.SEVERE, null, ioe);
         }
     }
 
-    /*
     public void playAudioFile(String cardNum) throws InterruptedException, Exception {
         PlaySoundWAV player = new PlaySoundWAV();
 
@@ -241,5 +240,4 @@ public class CardMatcher {
                 System.out.println("keine Audiodatei vorhanden");
         }
     }
-     */
 }
