@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 /**
  * This RfidListener implements an interface between the python write and java.
  *
- * @author Sacredgamer
+ * @author a_bir + janik
  */
 public class RfidListener {
 

@@ -5,12 +5,13 @@
  */
 package Rfid;
 
-import AudioName.AudioFileTranslater;
+import AudioName.AFT;
+import AudioPlayerText.PlayText;
 import java.io.IOException;
 
 /**
  *
- * @author janik
+ * @author a_bir + janik
  */
 public class Category {
 
@@ -19,17 +20,18 @@ public class Category {
         String category = "";
 
         RfidListener reader_category = new RfidListener();
+        PlayText tts = new PlayText();
 
         reader_category.read();
         category = reader_category.getContent();
 
         if ("Kat.1".equals(category) || "Kat.2".equals(category) || "Kat.3".equals(category)) {
             System.out.println("Kategorie erfasst (category= " + category + ")");
-            
-            //tts.dospeak("Du hast die Kategorie geändert.");
+
+            tts.playText("Du hast die Kategorie gewechselt", 0, 0.5f);
 
             Interface.init(Interface.getReadPath(), "/home/pi/pi-rfid/Sounds/" + category + "/");
-            AudioFileTranslater.switchCategoryStrings(category);
+            AFT.switchCategoryStrings(category);
             Thread.sleep(3000);
 
         } else {

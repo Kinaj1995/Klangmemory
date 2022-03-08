@@ -25,7 +25,7 @@ import marytts.util.data.audio.StereoAudioInputStream;
  
 /**
  *
- * @author a_bir
+ * @author a_bir + janik
  * PlayText need this class for playing the AudioText
  */
 public class AudioPlayer extends Thread {

@@ -1,14 +1,14 @@
 package piapplication;
 
+import AudioName.AFT;
 import Rfid.*;
 import java.util.logging.Logger;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
- * Test class
  *
- * @author Sacredgamer
+ * @author a_bir + janik
  */
 public class PiApplication {
 
@@ -27,6 +27,7 @@ public class PiApplication {
 
         //change this to your read- and write python files
         Interface.init("/home/pi/pi-rfid/Read.py", "/home/pi/pi-rfid/Sounds/Kat.1/");
+        AFT.switchCategoryStrings("Kat.1");
 
         boolean tryAgain = true;
         boolean b = true;
@@ -36,6 +37,7 @@ public class PiApplication {
             Category switchCategory = new Category();
             switchCategory.switchCategoryPath();
 
+            
             //log.info("Cardmatching:");
             CardMatcher cardmatching = new CardMatcher();
             cardmatching.cardmatching();

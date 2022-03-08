@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 /**
  * This class provides the mapping between the python files.
  *
- * @author Sacredgamer
+ * @author a_bir + janik
  */
 public class Interface {
 

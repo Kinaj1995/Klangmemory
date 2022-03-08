@@ -17,7 +17,7 @@ import marytts.exceptions.SynthesisException;
 
 /**
  *
- * @author a_bir
+ * @author a_bir + janik
  * Plays the text when a pair is found or not. 
  */
 public class PlayText {

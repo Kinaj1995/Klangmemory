@@ -13,7 +13,7 @@ import javax.sound.sampled.Clip;
 
 /**
  *
- * @author a_bir
+ * @author a_bir + janik
  * Plays all WAV Audio Files
  */
 public class PlaySoundWAV {
